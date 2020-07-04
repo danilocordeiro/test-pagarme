@@ -1,0 +1,8 @@
+{
+  "name": "test-pagarme",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": "git@github.com:danilocordeiro/test-pagarme.git",
+  "author": "danilocordeiro.dev@gmail.com <danilocordeiro.dev@gmail.com>",
+  "license": "MIT"
+}
