@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const moment = require('moment')
 
 const userModel = new Schema(
   {
@@ -7,6 +8,7 @@ const userModel = new Schema(
     email: { type: String },
     password: { type: String },
     active: { type: Boolean, required: true, default: true },
+    payDay: { type: Date, default: Date.now },
     createdAt: { type: Date, default: Date.now }
   },
   { versionkey: false }
@@ -14,7 +16,9 @@ const userModel = new Schema(
 
 userModel.pre('save', (next) => {
   const now = new Date()
+  const datav = new Date(moment().add(7, 'days')._d.toISOString())
   if (!this.createdAt) this.createdAt = now
+  if (!this.payDay) this.payDay = datav
   next()
 })
 
