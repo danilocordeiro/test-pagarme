@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs')
 class userRepository {
   constructor () {
     this._base = new Base('User')
-    this._projection = 'name email';
+    this._projection = 'name email'
   }
 
   async authenticate (email, password, flag) {
