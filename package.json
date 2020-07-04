@@ -17,9 +17,6 @@
     "pagarme": "^4.11.0",
     "react-native-crypto-js": "^1.0.0"
   },
-  "scripts": {
-    "start": "nodemon server.js"
-  },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "eslint": "^7.4.0",
