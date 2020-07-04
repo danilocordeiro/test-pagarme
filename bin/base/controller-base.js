@@ -9,6 +9,8 @@ exports.post = async (repository, validationContract, req, res) => {
           validation: validationContract.errors()
         })
         .end()
+
+      return;
     }
 
     const result = await repository.create(data, req)
@@ -29,6 +31,7 @@ exports.put = async (repository, validationContract, req, res) => {
           validation: validationContract.errors()
         })
         .end()
+      return;
     }
 
     const result = await repository.update(
