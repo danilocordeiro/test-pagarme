@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const { ObjectId, Schema } = mongoose.Schema
+const Schema = mongoose.Schema
 
 const userModel = new Schema(
   {

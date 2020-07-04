@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const variables = {
   Database: {
     connection: process.env.connection
