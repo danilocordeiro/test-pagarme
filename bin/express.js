@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const variables = require('../bin/configuration/variables')
+const userRouter = require('../routes/user-router')
 
 const app = express()
 
@@ -15,3 +16,5 @@ mongoose.connect(variables.Database.connection, {
   useNewUrlParser: true,
   useCreateIndex: true
 })
+
+app.use('/api/user', userRouter)
