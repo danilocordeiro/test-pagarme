@@ -16,7 +16,7 @@ class cardRepository {
       return await this._base.delete(id)
     }
 
-    return 'Invalid operation';
+    return 'Invalid operation'
   }
 
   async getById (id) {

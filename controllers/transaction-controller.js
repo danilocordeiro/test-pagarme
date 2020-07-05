@@ -155,7 +155,7 @@ transactionController.prototype.post = async (req, res) => {
         holder_name: cardAux.holder_name,
         cardNumber: `${cardAux.first_digits}******${cardAux.last_digits}`
       }
-      const cardCreated = await _repoCard.create(card)
+      await _repoCard.create(card)
       const transaction = {
         status: pagarmeTransaction.status,
         authorization_code: pagarmeTransaction.authorization_code,
@@ -170,7 +170,7 @@ transactionController.prototype.post = async (req, res) => {
       res.status(200).send(transactionCreated)
     }
   } catch (e) {
-    let error = '';
+    let error = ''
     if (e.response && e.response.errors) {
       error = e.response.errors
     } else {
@@ -182,9 +182,9 @@ transactionController.prototype.post = async (req, res) => {
 
 transactionController.prototype.get = async (req, res) => {
   ctrlBase.getMyAll(_repo, req, res)
-};
+}
 transactionController.prototype.delete = async (req, res) => {
   ctrlBase.delete(_repo, req, res)
-};
+}
 
 module.exports = transactionController
