@@ -84,13 +84,13 @@ userController.prototype.put = async (req, res) => {
 
 userController.prototype.get = async (req, res) => {
   ctrlBase.get(_repo, req, res)
-};
+}
 
 userController.prototype.delete = async (req, res) => {
   const _validationContract = new Validation()
   _validationContract.isRequired(req.params.id, 'Your id')
   ctrlBase.get(_repo, req, res)
-};
+}
 
 userController.prototype.authenticate = async (req, res) => {
   const _validationContract = new Validation()
@@ -111,7 +111,7 @@ userController.prototype.authenticate = async (req, res) => {
       message: 'Error to login',
       validation: _validationContract.errors()
     })
-    return;
+    return
   }
   const userFound = await _repo.authenticate(
     req.body.email,

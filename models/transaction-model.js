@@ -10,7 +10,6 @@ const transactionModel = new schema(
     authorization_code: { type: String },
     risk_level: { type: String },
     acquirer_id: { type: String },
-
     userId: { type: ObjectId, ref: 'User' },
     cardId: { type: ObjectId, ref: 'Card' },
     active: { type: Boolean, required: true, default: true },

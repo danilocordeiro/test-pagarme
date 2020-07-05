@@ -54,6 +54,15 @@ exports.get = async (repository, validationContract, req, res) => {
   }
 }
 
+exports.getMyAll = async (repository, validationContract, req, res) => {
+  try {
+    const result = await repository.getMyAll(req.userLogged.user)
+    res.status(200).send(result)
+  } catch (e) {
+    res.status(500).send({ message: 'Internal Server Error', error: e })
+  }
+}
+
 exports.delete = async (repository, validationContract, req, res) => {
   try {
     const id = req.params.id
