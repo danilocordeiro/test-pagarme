@@ -8,6 +8,6 @@ router.post('/authenticate', _ctrl.authenticate)
 
 router.get('/', auth, _ctrl.get)
 router.put('/:id', auth, _ctrl.put)
-router.put('/:id', auth, _ctrl.delete)
+router.delete('/:id', auth, _ctrl.delete)
 
 module.exports = router

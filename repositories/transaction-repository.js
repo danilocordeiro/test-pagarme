@@ -3,7 +3,7 @@ const Base = require('../bin/base/repository-base')
 
 class transactionRepository {
   constructor () {
-    this._base = new Base('Card')
+    this._base = new Base('Transaction')
   }
 
   async getMyAll (user) {
@@ -28,3 +28,5 @@ class transactionRepository {
     return transaction
   }
 }
+
+module.exports = transactionRepository

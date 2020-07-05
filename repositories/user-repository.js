@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs')
 class userRepository {
   constructor () {
     this._base = new Base('User')
-    this._projection = 'name email'
+    this._projection = 'name email';
   }
 
   async authenticate (email, password, flag) {
@@ -20,7 +20,7 @@ class userRepository {
       this._projection
     )
 
-    if (await bcrypt.compareSync(password, user.password)) {
+    if (user && (await bcrypt.compareSync(password, user.password))) {
       return userResponse
     }
 
@@ -87,6 +87,10 @@ class userRepository {
 
   async delete (id) {
     return await this.base.delete(id)
+  }
+
+  async updatePayment (data, userid) {
+    return await this._base.update(userid, { payDay: data })
   }
 }
 

@@ -28,3 +28,5 @@ class cardRepository {
     return card
   }
 }
+
+module.exports = cardRepository

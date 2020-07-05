@@ -15,8 +15,20 @@ const _repoUser = new RepositoryUser()
 function transactionController () {}
 
 transactionController.prototype.post = async (req, res) => {
+  const objtoencrypt = JSON.stringify({
+    card_number: '4111111111111111',
+    card_expiration_date: '0922',
+    card_holder_name: 'Danilo',
+    card_cvv: '322'
+  })
+  const cardHash = Crypto.AES.encrypt(
+    objtoencrypt,
+    'hdfudhuidfhudhudah9d8s8f9d8a98as9d8s9d89as'
+  ).toString()
+  console.log(cardHash)
+
   try {
-    const _validationContract = new validation()
+    const _validationContract = new Validation()
     _validationContract.isRequired(req.body.cpf, 'Your cpf')
     const data = req.body
     const encryptionKey = variables.Pagarme.pagarmeKey

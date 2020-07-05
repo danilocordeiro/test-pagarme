@@ -45,7 +45,7 @@ exports.put = async (repository, validationContract, req, res) => {
   }
 }
 
-exports.get = async (repository, validationContract, req, res) => {
+exports.get = async (repository, req, res) => {
   try {
     const result = await repository.getAll()
     res.status(200).send(result)
@@ -54,7 +54,7 @@ exports.get = async (repository, validationContract, req, res) => {
   }
 }
 
-exports.getMyAll = async (repository, validationContract, req, res) => {
+exports.getMyAll = async (repository, req, res) => {
   try {
     const result = await repository.getMyAll(req.userLogged.user)
     res.status(200).send(result)
@@ -63,9 +63,9 @@ exports.getMyAll = async (repository, validationContract, req, res) => {
   }
 }
 
-exports.delete = async (repository, validationContract, req, res) => {
+exports.delete = async (repository, req, res) => {
   try {
-    const id = req.params.id
+    const { id } = req.params
     if (id) {
       const result = await repository.delete(id, req.userLogged)
       if (result !== 'Invalid operation') {
