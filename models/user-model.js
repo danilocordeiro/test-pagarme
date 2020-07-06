@@ -6,6 +6,7 @@ const userModel = new Schema(
   {
     name: { trim: true, index: true, required: true, type: String },
     email: { type: String },
+    type: { type: String, default: 'client' },
     password: { type: String },
     active: { type: Boolean, required: true, default: true },
     payDay: { type: Date, default: Date.now },
