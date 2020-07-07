@@ -71,9 +71,11 @@ userController.prototype.put = async (req, res) => {
         `The email ${req.body.email} is already registered`
       )
     }
-    const salt = await bcrypt.genSaltSync(10)
-    req.body.password = await bcrypt.hashSync(req.body.password, salt)
-    ctrlBase.post(_repo, _validationContract, req, res)
+    if (req.usuarioLogado.user._id.toString() === req.params.id) {
+      ctrlBase.put(_repo, _validationContract, req, res)
+    } else {
+      res.status(401).send({ message: 'Você não tem permissão' })
+    }
   } catch (e) {
     res.status(500).send({
       message: 'Internal Server Error',
