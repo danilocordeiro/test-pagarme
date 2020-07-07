@@ -63,20 +63,25 @@ userController.prototype.put = async (req, res) => {
   _validationContract.isEmail(req.body.email, 'Send a valid e-mail')
 
   try {
-    const existsUserByEmail = await _repo.isEmailExists(req.body.email)
+    const existsUserByEmail = await _repo.existsUserByEmail(req.body.email)
     if (existsUserByEmail) {
+      console.log(existsUserByEmail._id)
+      console.log(req.params.id)
+      console.log(existsUserByEmail._id.toString() !== req.params.id)
       _validationContract.isTrue(
         existsUserByEmail.name !== undefined &&
-          existsUserByEmail._id !== req.params.id,
+          existsUserByEmail._id.toString() !== req.params.id,
         `The email ${req.body.email} is already registered`
       )
     }
-    if (req.usuarioLogado.user._id.toString() === req.params.id) {
+    if (req.userLogged.user._id.toString() === req.params.id) {
       ctrlBase.put(_repo, _validationContract, req, res)
     } else {
-      res.status(401).send({ message: 'Você não tem permissão' })
+      res.status(401).send({ message: 'Unauthorized' })
     }
   } catch (e) {
+    console.log(e)
+
     res.status(500).send({
       message: 'Internal Server Error',
       error: e
