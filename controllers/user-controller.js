@@ -89,6 +89,29 @@ userController.prototype.put = async (req, res) => {
   }
 }
 
+userController.prototype.completeRegister = async (req, res) => {
+  try {
+    const validationContract = new Validation()
+    validationContract.isRequired(req.body.cpf, 'Your cpf')
+    validationContract.isRequired(req.body.phone, 'your phone')
+    if (!validationContract.isValid()) {
+      req
+        .status(400)
+        .send({
+          message: 'Invalid data in request',
+          validation: validationContract.errors()
+        })
+        .end()
+      return
+    }
+    const data = req.body
+    const user = await _repo.completeRegister(data, req.userLogged.user._id)
+    res.status(200).send(user)
+  } catch (e) {
+    res.status(500).send({ message: 'Internal server error', error: e })
+  }
+}
+
 userController.prototype.get = async (req, res) => {
   ctrlBase.get(_repo, req, res)
 }
