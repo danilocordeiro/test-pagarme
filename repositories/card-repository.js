@@ -4,10 +4,11 @@ const Base = require('../bin/base/repository-base')
 class cardRepository {
   constructor () {
     this._base = new Base('Card')
+    this.projection = 'name cardNumber brand'
   }
 
   async getMyAll (user) {
-    return await this._base.getMyAll(user)
+    return await this._base._model.find({ userId: user })
   }
 
   async delete (id, user) {
